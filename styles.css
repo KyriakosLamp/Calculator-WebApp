@@ -1,0 +1,85 @@
+body{
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: hsl(0, 0%, 10%);
+}
+
+
+
+#calculator{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    border-radius: 5%;
+    max-width: 450px;
+    max-height: 700px;
+    overflow: hidden;
+}
+#display{
+
+    width: 350px;
+    height: 60px;
+    padding-top: 100px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    text-align: right;
+    overflow:hidden;
+    font-size: 60px;
+    border: red;
+    background-color:black;
+    color: hsl(0, 0%, 95%);
+}
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr );
+    gap: 10px;
+    padding: 20px;
+}
+.GrayOp{
+    background-color: hsl(0, 0%, 50%);
+    color: black;
+}
+.YellowOp{
+    background-color: hsl(37, 100%, 50%);
+}
+
+
+button{
+ width: 80px;
+ height: 80px;
+ border-radius:100%;
+ border: none;
+ background-color: hsl(0, 0%, 10%);
+ color: white;
+ font-size: 225%;
+ font-weight:100;
+ cursor: pointer;
+ transition: background-color 300ms ease;
+
+}
+
+button:hover{
+    background-color:hsl(0, 0%, 20%);
+}
+button:active{
+
+    background-color:hsl(0, 0%, 30%);   
+}
+
+.GrayOp:hover{
+    background-color: hsl(0, 0%, 70%);
+}
+.GrayOp:active{
+
+    background-color:hsl(0, 0%, 90%);   
+}
+.YellowOp:hover{
+    background-color: hsl(37, 100%, 70%);
+}
+.YellowOp:active{
+
+    background-color: hsl(37, 100%, 90%);
+}

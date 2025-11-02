@@ -1,4 +1,5 @@
 const display = document.getElementById('display');
+const history = document.getElementById('history');
 const body=document.getElementById('body');
 
 temp_result=0;
@@ -37,6 +38,9 @@ function KeyboardUser(key){
         case('Numpad0'):
             sendNumber('0')
             return;
+        case('NumpadDecimal'):
+            sendDecimal()
+            return;
         case('NumpadAdd'):
             sendAction('+')
             return;
@@ -64,13 +68,30 @@ function clearDisplay()
     temp_operator=0;
     temp_result=0;
     display.value=0;
+    history.textContent='';
 }
 
 function sendNumber(num){
-    if(display.value!=0)
-        display.value=(display.value)+num;
-    else
+    if(display.value=='0' || display.value=='Error')
         display.value=num;
+    else
+        display.value=(display.value)+num;
+}
+
+function sendDecimal(){
+    if(display.value.indexOf('.') === -1){
+        display.value += '.';
+    }
+}
+
+function percentage(){
+    display.value = parseFloat(display.value) / 100;
+}
+
+function toggleSign(){
+    if(display.value != '0' && display.value != 'Error'){
+        display.value = display.value.startsWith('-') ? display.value.slice(1) : '-' + display.value;
+    }
 }
 
 function sendAction(operator)
@@ -81,6 +102,7 @@ function sendAction(operator)
     }
     temp_result=display.value;
     temp_operator=operator;
+    history.textContent=temp_result + ' ' + operator;
     display.value=0;
     return;
 }
@@ -99,21 +121,28 @@ function calculate(operator)
             temp_result=parseFloat(temp_result) * parseFloat(display.value);
             break;
         case('/'):
-            try {
-                temp_result=parseFloat(temp_result) / parseFloat(display.value);
-                break;
-                } catch (error) {  display.value='Error'; }
+            if(parseFloat(display.value) === 0){
+                display.value='Error';
+                history.textContent='';
+                temp_result=0;
+                temp_operator=0;
+                return;
+            }
+            temp_result=parseFloat(temp_result) / parseFloat(display.value);
+            break;
         default:
            display.value='Error';
             return;
         }
         temp_operator=operator;
+        history.textContent=temp_result + ' ' + operator;
         display.value=0; return;
 }
 
 function showResult(){
     calculate('=');
     display.value=temp_result;
+    history.textContent='';
     temp_operator=0;
     temp_result=0;
     return;

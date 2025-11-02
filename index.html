@@ -10,12 +10,12 @@
     </head>
     <body id="body">
        <div id='calculator'>
-            
+            <div id="history"></div>
             <input id="display" value=0  readonly>
             <div id="buttons">
                 <button class="GrayOp" onclick="clearDisplay()">C</button>
-                <button class="GrayOp" onclick="sendAction('+/-')">+/-</button>
-                <button class="GrayOp" onclick="sendAction('%')">%</button>
+                <button class="GrayOp" onclick="toggleSign()">+/-</button>
+                <button class="GrayOp" onclick="percentage()">%</button>
                 <button class="YellowOp" onclick="sendAction('/')">/</button>
                 <button onclick="sendNumber('7')">7</button>
                 <button onclick="sendNumber('8')">8</button>
@@ -29,9 +29,8 @@
                 <button onclick="sendNumber('2')">2</button>
                 <button onclick="sendNumber('3')">3</button>
                 <button class="YellowOp" onclick="sendAction('+')">+</button>
-                <button onclick="sendNumber('0')">0</button>
-                <button onclick="sendNumber('0')">0</button>
-                <button conclick="sendNumber(',')">,</button>
+                <button class="zero-button" onclick="sendNumber('0')" style="grid-column: span 2;">0</button>
+                <button onclick="sendDecimal()">.</button>
                 <button class="YellowOp" onclick="showResult()">=</button>
             </div>
 
